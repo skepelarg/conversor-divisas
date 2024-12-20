@@ -7,7 +7,9 @@
     <link rel="manifest" href="manifest.json">
     <!-- Color del tema en navegadores móviles -->
     <meta name="theme-color" content="#227AFF">
-    <!-- Favicon -->
+    <!-- Favicon en formato ICO (para mayor compatibilidad) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Favicon en formato PNG adicional -->
     <link rel="icon" href="icon.png" type="image/png">
     <!-- Título con emoji -->
     <title>Conversor de Divisas 💱</title>
@@ -233,67 +235,4 @@
             }
 
             // Verificar disponibilidad de tasas
-            if (!tasasDeCambio[monedaDestino] || !tasasDeCambio[monedaOrigen]) {
-                return { 
-                    exito: false, 
-                    mensaje: 'Tasa de cambio no disponible.' 
-                };
-            }
-
-            // Conversión dentro de la misma moneda
-            if (monedaOrigen === monedaDestino) {
-                return { 
-                    exito: true, 
-                    resultado: monto 
-                };
-            }
-
-            // Conversión entre monedas usando BRL como intermediario
-            const montoEnBRL = monedaOrigen === 'BRL' 
-                ? monto 
-                : monto / tasasDeCambio[monedaOrigen];
-            
-            const resultadoEnMonedaDestino = montoEnBRL * tasasDeCambio[monedaDestino];
-
-            return { 
-                exito: true, 
-                resultado: resultadoEnMonedaDestino 
-            };
-        }
-
-        // Evento del formulario
-        document.getElementById('converter-form').addEventListener('submit', function (evento) {
-            evento.preventDefault();
-
-            const monedaOrigen = document.getElementById('base-currency').value;
-            const monto = parseFloat(document.getElementById('amount').value);
-            const monedaDestino = document.getElementById('target-currency').value;
-
-            const resultadoConversion = convertirMoneda(monto, monedaOrigen, monedaDestino);
-            
-            const contenedorResultado = document.getElementById('result');
-            if (resultadoConversion.exito) {
-                // Formatear los valores
-                const montoFormateado = monto.toLocaleString('es-ES', { minimumFractionDigits: 2 });
-                const resultadoFormateado = resultadoConversion.resultado.toLocaleString('es-ES', { minimumFractionDigits: 2 });
-
-                contenedorResultado.innerHTML = `
-                    <span class="block">💱 ${montoFormateado} ${monedaOrigen} = 
-                    <strong>${resultadoFormateado} ${monedaDestino}</strong> 💱</span>
-                `;
-            } else {
-                contenedorResultado.textContent = resultadoConversion.mensaje;
-            }
-        });
-
-        // Actualizar tasas periódicamente cada 10 minutos
-        setInterval(obtenerTasasDeCambio, 10 * 60 * 1000);
-
-        // Cargar tasas al iniciar
-        obtenerTasasDeCambio();
-
-        // Actualizar el año actual en el footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-</body>
-</html>
+            if (!tasasDeCambio[monedaDestino] || !tasasDeCambio[
