@@ -1,12 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Manifiesto PWA -->
     <link rel="manifest" href="manifest.json">
+    <!-- Color del tema -->
     <meta name="theme-color" content="#227AFF">
-    <title>Conversor de Divisas 🪙</title>
+
+    <!-- Favicon para navegadores de escritorio -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+
+    <!-- Apple Touch Icon para iOS (Safari) -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Opcional: favicon.ico para compatibilidad máxima -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <title>Conversor de Divisas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -262,7 +273,6 @@
             
             const contenedorResultado = document.getElementById('result');
             if (resultadoConversion.exito) {
-                // Formatear los valores
                 const montoFormateado = monto.toLocaleString('es-ES', { minimumFractionDigits: 2 });
                 const resultadoFormateado = resultadoConversion.resultado.toLocaleString('es-ES', { minimumFractionDigits: 2 });
 
