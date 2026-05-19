@@ -86,7 +86,7 @@
                         <option value="ARS">🇦🇷 Peso Argentino (ARS)</option>
                         <option value="USD">🇺🇸 Dólar Estadounidense (USD)</option>
                         <!-- NUEVO: Agregamos ILS en la moneda de origen -->
-                        <option value="ILS">🇮🇱 Shekel israelí (ILS)</option>
+                        <option value="DKK">🇮🇱 Shekel israelí (DKK)</option>
                     </select>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                         <option value="USD">🇺🇸 Dólar Estadounidense (USD)</option>
                         <option value="BRL">🇧🇷 Real Brasileño (BRL)</option>
                         <!-- NUEVO: Agregamos ILS en la moneda de destino -->
-                        <option value="ILS">🇮🇱 Shekel israelí (ILS)</option>
+                        <option value="DKK">🇮🇱 Shekel israelí (DKK)</option>
                     </select>
                 </div>
             </div>
@@ -178,13 +178,13 @@
             const ars = tasasDeCambio.ARS ? tasasDeCambio.ARS.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : "N/A";
             const usd = tasasDeCambio.USD ? tasasDeCambio.USD.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : "N/A";
             // NUEVO: Agregamos el Shekel israelí si existe en la respuesta de la API
-            const ils = tasasDeCambio.ILS ? tasasDeCambio.ILS.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : "N/A";
+            const dkk = tasasDeCambio.DKK ? tasasDeCambio.DKK.toLocaleString('es-ES', { minimumFractionDigits: 2 }) : "N/A";
 
-            // NUEVO: Agregamos la línea de ILS
+            // NUEVO: Agregamos la línea de DKK
             contenedorTasas.innerHTML = `
                 <p>1 🇧🇷 BRL = ${ars} 🇦🇷 ARS</p>
                 <p>1 🇧🇷 BRL = ${usd} 🇺🇸 USD</p>
-                <p>1 🇧🇷 BRL = ${ils} 🇮🇱 ILS</p>
+                <p>1 🇧🇷 BRL = ${dkk} 🇮🇱 DKK</p>
             `;
 
             ultimaActualizacion.textContent = `Última actualización: ${new Date().toLocaleString()}`;
